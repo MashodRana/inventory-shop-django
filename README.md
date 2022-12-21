@@ -1,0 +1,1 @@
+# inventory-shop-django
