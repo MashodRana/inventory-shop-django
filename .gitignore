@@ -2,67 +2,67 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-/.pnp
-.pnp.js
+/client/node_modules
+/client/.pnp
+/client/.pnp.js
 
 # testing
-/coverage
+/client/coverage
 
 # production
-/build
+/client/build
 
 # misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+/client/.DS_Store
+/client/.env.local
+/client/.env.development.local
+/client/.env.test.local
+/client/.env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+/client/npm-debug.log*
+/client/yarn-debug.log*
+/client/yarn-error.log*
 
 
 # For Python
 # Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+/server/__pycache__/
+/server/*.py[cod]
+/server/*$py.class
 
 # C extensions
-*.so
+/server/*.so
 
 # Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+/server/.Python
+/server/build/
+/server/develop-eggs/
+/server/dist/
+/server/downloads/
+/server/eggs/
+/server/.eggs/
+/server/lib/
+/server/lib64/
+/server/parts/
+/server/sdist/
+/server/var/
+/server/wheels/
+/server/pip-wheel-metadata/
+/server/share/python-wheels/
+/server/*.egg-info/
+/server/.installed.cfg
+/server/*.egg
+/server/MANIFEST
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+/server/*.manifest
+/server/*.spec
 
 # Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+/server/pip-log.txt
+/server/pip-delete-this-directory.txt
 
 # Unit test / coverage reports
 htmlcov/
@@ -83,33 +83,17 @@ coverage.xml
 *.pot
 
 # Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
+/server/*.log
+/server/local_settings.py
+# db.sqlite3
+# db.sqlite3-journal
 
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
 
 # PyBuilder
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
+/server/target/
 
 # pyenv
-.python-version
+/server/.python-version
 
 # pipenv
 #   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
@@ -119,38 +103,23 @@ ipython_config.py
 #Pipfile.lock
 
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow
-__pypackages__/
+/server/__pypackages__/
 
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
 
-# SageMath parsed files
-*.sage.py
 
 # Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
+/server/.env
+/server/.venv
+/server/env/
+/server/venv/
+/server/ENV/
+/server/env.bak/
+/server/venv.bak/
 
 # mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
+/server/.mypy_cache/
+/server/.dmypy.json
+/server/dmypy.json
 
 # Pyre type checker
-.pyre/
+/server/.pyre/
