@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
@@ -12,9 +13,9 @@ const Header = () => {
                         <span class="ml-3 text-xl">MR Shop</span>
                     </a>
                     <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                        <a class="mr-5 hover:text-gray-900">Looged Home</a>
-                        <a class="mr-5 hover:text-gray-900">About</a>
-                        <a class="mr-5 hover:text-gray-900">Contact</a>
+                        <Link class="mr-5 hover:text-gray-900" to='/' >Looged Home</Link>
+                        <Link class="mr-5 hover:text-gray-900" to='about'>About</Link>
+                        <Link class="mr-5 hover:text-gray-900" to='contact'>Contact</Link>
                     </nav>
                     <button class="inline-flex items-center bg-gray-100 border-0 py-1 mr-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Login
 
