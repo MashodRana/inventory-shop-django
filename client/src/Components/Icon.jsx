@@ -82,7 +82,7 @@ export const ProductsIcon = () => {
     )
 }
 
-export const Supplier = () => {
+export const SupplierIcon = () => {
     return (
         <>
             <svg
