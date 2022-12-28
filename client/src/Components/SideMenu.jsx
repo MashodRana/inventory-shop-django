@@ -35,6 +35,7 @@ const SideMenu = () => {
             </div>
           </div>
           <ul class="space-y-2">
+            {/* Dashboard */}
             <li>
               <Link
                 to=""
@@ -53,6 +54,48 @@ const SideMenu = () => {
                 <span class="ml-3">Dashboard</span>
               </Link>
             </li>
+            
+            {/* Bill */}
+            <li>
+              <Link
+                to="bill"
+                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                  <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                </svg>
+                <span class="ml-3">Bill</span>
+              </Link>
+            </li>
+
+            {/* Stock */}
+            <li>
+              <Link
+                to="stock"
+                class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                  <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                </svg>
+                <span class="ml-3">Stock</span>
+              </Link>
+            </li>
+
+            {/* Sales */}
             <li>
               <button
                 type="button"
@@ -77,7 +120,7 @@ const SideMenu = () => {
                   class="flex-1 ml-3 text-left whitespace-nowrap"
                   sidebar-toggle-item
                 >
-                  E-commerce
+                  Sales
                 </span>
                 <svg
                   sidebar-toggle-item
@@ -95,28 +138,89 @@ const SideMenu = () => {
               </button>
               <ul id="dropdown-example" class="hidden py-2 space-y-2">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="sale-histoty"
                     class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
-                    Products
-                  </a>
+                    Sale History
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="sale-return"
                     class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
-                    Billing
-                  </a>
+                    Sale Return
+                  </Link>
+                </li>
+              </ul>
+            </li>
+
+            {/* Purchase */}
+            <li>
+              <button
+                type="button"
+                class="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                aria-controls="dropdown-example2"
+                data-collapse-toggle="dropdown-example2"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span
+                  class="flex-1 ml-3 text-left whitespace-nowrap"
+                  sidebar-toggle-item
+                >
+                  Purchase
+                </span>
+                <svg
+                  sidebar-toggle-item
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <ul id="dropdown-example2" class="hidden py-2 space-y-2">
+                <li>
+                  <Link
+                    to="purchase-history"
+                    class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  >
+                    Purchase History
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="add-purchase"
                     class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
-                    Invoice
-                  </a>
+                    Add Purchase
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="reteurn-purchase"
+                    class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  >
+                    Return Purchase
+                  </Link>
                 </li>
               </ul>
             </li>
