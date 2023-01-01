@@ -1,5 +1,7 @@
 import React from "react";
 import { Link, Route, Routes } from "react-router-dom";
+import CustomerAccountBook from "../../Components/AccountBook/CustomerAccountBook";
+import SupplierAccountBook from "../../Components/AccountBook/SupplierAccountBook";
 import Bill from "../../Components/Bill/Bill";
 import Dashboard from "../../Components/Dashboard/Dashboard";
 import PayoffPayments from "../../Components/Payments/PayoffPaymetns";
@@ -31,20 +33,31 @@ const LoggedHome = () => {
               <Route path="" element={<Dashboard />} />
               <Route path="bill" element={<Bill />} />
               <Route path="stock" element={<Stock />} />
+              {/* Sales */}
               <Route path="sale-history" element={<SaleHistory />} />
               <Route path="sales-return" element={<SalesReturn />} />
+
+              {/* Purchase */}
               <Route path="purchase-history" element={<PurchaseHistory />} />
               <Route path="add-purchase" element={<AddPurchase />} />
               <Route path="return-purchase" element={<PurchaseReturn />} />
+
+              {/* Products */}
               <Route path="view-products" element={<ViewProducts />} />
               <Route path="add-products" element={<AddProducts />} />
+
+              {/* Suppliers */}
               <Route path="view-suppliers" element={<ViewSuppliers />} />
               <Route path="add-suppliers" element={<AddSuppliers />} />
+
+              {/* Payments */}
               <Route path="received-payments" element={<ReceivedPayments />} />
               <Route path="payoff-payments" element={<PayoffPayments />} />
 
-              <Route path="sales/" element={<Sales />} />
-              <Route path="purchase/" element={<Purchase />} />
+              {/* Account Book */}
+              <Route path="customer-account-book" element={<CustomerAccountBook />} />
+              <Route path="supplier-account-book" element={<SupplierAccountBook />} />
+
             </Routes>
           </div>
         </div>
