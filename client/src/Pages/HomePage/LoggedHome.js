@@ -23,7 +23,7 @@ import ViewSuppliers from "../../Components/Suppliers/ViewSuppliers";
 const LoggedHome = () => {
   return (
     <>
-      <div class="flex flex-wrap  w-full h-screen">
+      <div class="flex flex-wrap  w-full h-full">
         <div class="w-2/12 bg-white rounded p-3 ">
           <SideMenu />
         </div>
