@@ -5,6 +5,8 @@ import Dashboard from "../../Components/Dashboard/Dashboard";
 import Products from "../../Components/Products/Products";
 import Purchase from "../../Components/Purchase";
 import Sales from "../../Components/Sales";
+import SaleHistory from "../../Components/Sales/SaleHistory";
+import SalesReturn from "../../Components/Sales/SalesReturn";
 import SideMenu from "../../Components/SideMenu";
 import Stock from "../../Components/Stock/Stock";
 
@@ -21,6 +23,8 @@ const LoggedHome = () => {
               <Route path="" element={<Dashboard />} />
               <Route path="bill" element={<Bill />} />
               <Route path="stock" element={<Stock />} />
+              <Route path="sale-history" element={<SaleHistory />} />
+              <Route path="sales-return" element={<SalesReturn />} />
               <Route path="products/" element={<Products />} />
               <Route path="sales/" element={<Sales />} />
               <Route path="purchase/" element={<Purchase />} />
