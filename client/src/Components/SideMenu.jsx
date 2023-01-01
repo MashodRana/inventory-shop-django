@@ -6,7 +6,7 @@ import { AccountBookIcon, BillingIcon, DashboardIcon, PaymentsIcon, ProductsIcon
 const SideMenu = () => {
   return (
     <>
-      <aside class="w-64" aria-label="Sidebar">
+      <aside class="w-full" aria-label="Sidebar">
         <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800">
           <div class="flex items-center space-x-4 p-2 mb-5">
             <img

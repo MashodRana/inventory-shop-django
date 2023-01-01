@@ -23,12 +23,11 @@ import ViewSuppliers from "../../Components/Suppliers/ViewSuppliers";
 const LoggedHome = () => {
   return (
     <>
-      <div class="flex flex-wrap  w-full h-full">
-        <div class="w-2/12 bg-white rounded p-3 ">
+      <div class="flex flex-wrap justify-between  w-full h-full">
+        <div class="w-2/12 bg-white rounded pl-3">
           <SideMenu />
         </div>
-        <div class="w-8/12">
-          <div class="p-4 text-gray-500">
+        <div class="ml-2 w-9/12">
             <Routes>
               <Route path="" element={<Dashboard />} />
               <Route path="bill" element={<Bill />} />
@@ -60,7 +59,7 @@ const LoggedHome = () => {
 
             </Routes>
           </div>
-        </div>
+    
       </div>
     </>
   );
