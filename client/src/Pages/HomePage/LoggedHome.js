@@ -2,6 +2,8 @@ import React from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import Bill from "../../Components/Bill/Bill";
 import Dashboard from "../../Components/Dashboard/Dashboard";
+import PayoffPayments from "../../Components/Payments/PayoffPaymetns";
+import ReceivedPayments from "../../Components/Payments/ReceivedPayments";
 import AddProducts from "../../Components/Products/AddProducts";
 import ViewProducts from "../../Components/Products/ViewProducts";
 import Purchase from "../../Components/Purchase";
@@ -13,6 +15,8 @@ import SaleHistory from "../../Components/Sales/SaleHistory";
 import SalesReturn from "../../Components/Sales/SalesReturn";
 import SideMenu from "../../Components/SideMenu";
 import Stock from "../../Components/Stock/Stock";
+import AddSuppliers from "../../Components/Suppliers/AddSuppliers";
+import ViewSuppliers from "../../Components/Suppliers/ViewSuppliers";
 
 const LoggedHome = () => {
   return (
@@ -34,6 +38,11 @@ const LoggedHome = () => {
               <Route path="return-purchase" element={<PurchaseReturn />} />
               <Route path="view-products" element={<ViewProducts />} />
               <Route path="add-products" element={<AddProducts />} />
+              <Route path="view-suppliers" element={<ViewSuppliers />} />
+              <Route path="add-suppliers" element={<AddSuppliers />} />
+              <Route path="received-payments" element={<ReceivedPayments />} />
+              <Route path="payoff-payments" element={<PayoffPayments />} />
+
               <Route path="sales/" element={<Sales />} />
               <Route path="purchase/" element={<Purchase />} />
             </Routes>
