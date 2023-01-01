@@ -1,4 +1,4 @@
-const Products = ()=>{
+const ViewProducts = ()=>{
     return (
         <>
         <h1 className="text-2xl">This is Products list</h1>
@@ -6,4 +6,4 @@ const Products = ()=>{
     );
 };
 
-export default Products;
+export default ViewProducts;

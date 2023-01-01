@@ -4,7 +4,6 @@ import './App.css';
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Footer from './Components/Footer';
 import Header from './Components/Header';
-import Products from "./Components/Products/Products";
 import About from "./Pages/About/About";
 import Contact from "./Pages/Contact/Contact";
 import Home from './Pages/HomePage/Home';
