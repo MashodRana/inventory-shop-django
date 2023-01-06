@@ -1,4 +1,4 @@
-import { faBarcode, faSearch, faSquareMinus, faUserPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faBarcode, faMoneyBill, faSearch, faSquareMinus, faUserPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
@@ -182,6 +182,16 @@ const Bill = () => {
                             </tr>
                         </tfoot>
                     </table>
+                </div>
+
+                <div className="py-4 flex justify-center items-center">
+                    <button
+                        type="button"
+                        class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-amber-200 hover:bg-amber-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                    >
+                        <span className="mr-2"><FontAwesomeIcon icon={faMoneyBill} /></span>
+                        CHECKOUT
+                    </button>
                 </div>
 
             </div>
