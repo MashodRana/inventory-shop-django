@@ -13,7 +13,7 @@ const Header = () => {
                         <span class="ml-3 text-xl">MR Shop</span>
                     </a>
                     <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                        <Link class="mr-5 hover:text-gray-900" to='/' >Looged Home</Link>
+                        <Link class="mr-5 hover:text-gray-900" to='dashboard' >Looged Home</Link>
                         <Link class="mr-5 hover:text-gray-900" to='about'>About</Link>
                         <Link class="mr-5 hover:text-gray-900" to='contact'>Contact</Link>
                     </nav>
