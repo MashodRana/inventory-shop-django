@@ -1,3 +1,5 @@
+import { faMoneyBill, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const AddPurchase = () => {
     return (
         <>
@@ -41,6 +43,153 @@ const AddPurchase = () => {
 
                 </div>
             </div>
+
+            {/* Product Table */}
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-amber-200 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-6 w-3/12">
+                                    Product name
+                                </th>
+                                <th scope="col" class="px-6 py-6 w-1/12">
+                                    Price
+                                </th>
+                                <th scope="col" class="px-6 py-6 w-1/12">
+                                    Quantity
+                                </th>
+                                <th scope="col" class="px-6 py-6 w-1/12">
+                                    Unit
+                                </th>
+                                <th scope="col" class="px-6 py-6 w-2/12 text-end">
+                                    Sub Total
+                                </th>
+                                <th scope="col" class="px-6 py-6 w-1/12">
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Apple MacBook Pro 17"
+                                </th>
+                                <td class="px-6 py-4">
+                                    $1000
+                                </td>
+                                <td class="px-6 py-4">
+                                    3
+                                </td>
+                                <td class="px-6 py-4">
+                                    Kg
+                                </td>
+                                <td class="px-6 py-4 text-end">
+                                    $3000
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <FontAwesomeIcon className="text-xl text-red-500 hover:cursor-pointer" icon={faXmark} />
+                                </td>
+                            </tr>
+                            <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Microsoft Surface Pro
+                                </th>
+                                <td class="px-6 py-4">
+                                    $1000
+                                </td>
+                                <td class="px-6 py-4">
+                                    3
+                                </td>
+                                <td class="px-6 py-4">
+                                    Kg
+                                </td>
+                                <td class="px-6 py-4 text-end">
+                                    $3000
+                                </td>
+                                
+                                <td class="px-6 py-4 text-center">
+                                    <FontAwesomeIcon className="text-xl text-red-500 hover:cursor-pointer" icon={faXmark} />
+                                </td>
+                            </tr>
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Magic Mouse 2
+                                </th>
+                                <td class="px-6 py-4">
+                                    $1000
+                                </td>
+                                <td class="px-6 py-4">
+                                    3
+                                </td>
+                                <td class="px-6 py-4">
+                                    Kg
+                                </td>
+                                <td class="px-6 py-4 text-end">
+                                    $3000
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <FontAwesomeIcon className="text-xl text-red-500 hover:cursor-pointer" icon={faXmark} />
+                                </td>
+                            </tr>
+                            <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Google Pixel Phone
+                                </th>
+                                <td class="px-6 py-4">
+                                    $1000
+                                </td>
+                                <td class="px-6 py-4">
+                                    3
+                                </td>
+                                <td class="px-6 py-4">
+                                    Kg
+                                </td>
+                                <td class="px-6 py-4 text-end">
+                                    $3000
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <FontAwesomeIcon className="text-xl text-red-500 hover:cursor-pointer" icon={faXmark} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Apple Watch 5
+                                </th>
+                                <td class="px-6 py-4">
+                                    $1000
+                                </td>
+                                <td class="px-6 py-4">
+                                    3
+                                </td>
+                                <td class="px-6 py-4">
+                                    Kg
+                                </td>
+                                <td class="px-6 py-4 text-end">
+                                    $3000
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <FontAwesomeIcon className="text-xl text-red-500 hover:cursor-pointer" icon={faXmark} />
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="font-semibold text-gray-900 dark:text-white">
+                                <th scope="row" colspan="3" class="px-6 py-3 text-lg text-amber-500">Total</th>
+                                <td colspan="2" class="px-6 py-3 text-end">$ 21,000</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div className="py-4 flex justify-center items-center">
+                    <button
+                        type="button"
+                        class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-amber-200 hover:bg-amber-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                    >
+                        <span className="mr-2"><FontAwesomeIcon icon={faMoneyBill} /></span>
+                        Payment
+                    </button>
+                </div>
         </>
     );
 };
