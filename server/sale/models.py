@@ -4,7 +4,7 @@ from common.models import TimeStamp
 
 
 # Create your models here.
-class Sales(TimeStamp):
+class Sale(TimeStamp):
     details = models.TextField()
     total_price = models.FloatField()
     customer = models.CharField(max_length=255)

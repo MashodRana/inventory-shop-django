@@ -1,7 +1,7 @@
 from django.db import models
 
 from common.models import TimeStamp
-from suppliers.models import Supplier
+from supplier.models import Supplier
 
 
 # Create your models here.

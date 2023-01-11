@@ -42,11 +42,11 @@ INSTALLED_APPS = [
 
     # Custom app
     'common',
-    'accounts',
-    'products',
-    'purchases',
-    'sales',
-    'suppliers',
+    'account',
+    'product',
+    'purchase',
+    'sale',
+    'supplier',
     'stock',
 ]
 

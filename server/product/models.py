@@ -1,6 +1,6 @@
 from django.db import models
 from common.models import TimeStamp, Unit
-from suppliers.models import Supplier
+from supplier.models import Supplier
 
 
 class Product(TimeStamp):
