@@ -1,6 +1,6 @@
 from django.db import models
 from common.models import TimeStamp, Unit
-from products.models import Product
+from product.models import Product
 
 
 # Create your models here.
