@@ -1,8 +1,9 @@
 from django.db import models
+from common.models import TimeStamp
 
 
 # Create your models here.
-class Supplier(models.Model):
+class Supplier(TimeStamp):
     supplier_code = models.CharField(max_length=63)
     name = models.CharField(max_length=31)
     designation = models.CharField(max_length=15)
@@ -11,9 +12,6 @@ class Supplier(models.Model):
     email = models.EmailField(null=True, blank=True)
     company = models.CharField(max_length=31)
     address = models.TextField()
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     def  __str__(self) -> str:
         return self.name    
