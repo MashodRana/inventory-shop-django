@@ -11,7 +11,6 @@ from supplier.serializers import SupplierSerializer
 class SupplierListView(APIView):
     def get(self, request, fromat=None):
         suppliers = Supplier.objects.all()
-        print(suppliers)
         serializer = SupplierSerializer(suppliers, many=True)
         return Response(serializer.data)
 
