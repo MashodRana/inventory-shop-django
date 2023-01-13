@@ -1,10 +1,22 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 
 const AddSuppliers = () => {
-    const handleAddSupplierSubmit = (event)=>{
-        event.preventDefault();
-    };
+  const [supplierData, setSupplierData] = useState({});
+
+  const handleOnBlur = (event) => {
+    const field = event.target.name;
+    const value = event.target.value;
+    console.log(`>>>>>>>>>>>${field}=${value}`)
+    const newData = { ...supplierData };
+    newData[field] = value;
+    setSupplierData(newData);
+  };
+
+  const handleAddSupplierSubmit = (event) => {
+    event.preventDefault();
+  };
 
   return (
     <>
@@ -23,8 +35,11 @@ const AddSuppliers = () => {
                 Code
               </span>
               <input
+                name="supplier_code"
                 type="text"
                 id="website-admin"
+                onBlur={handleOnBlur}
+                value = {supplierData.supplier_code}
                 className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Supplier code"
               />
@@ -34,8 +49,11 @@ const AddSuppliers = () => {
                 Name
               </span>
               <input
-                type="text"
+                name="name"
+                onBlur={handleOnBlur}
+                value = {supplierData.name}
                 id="website-admin"
+                type="text"
                 className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Product name"
               />
@@ -47,6 +65,9 @@ const AddSuppliers = () => {
                 Designation
               </span>
               <input
+                name="designation"
+                onBlur={handleOnBlur}
+                value = {supplierData.designation}
                 type="text"
                 id="website-admin"
                 className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -59,6 +80,9 @@ const AddSuppliers = () => {
                 Contact
               </span>
               <input
+                name="primary_phone"
+                onBlur={handleOnBlur}
+                value = {supplierData.primary_phone}
                 type="number"
                 id="website-admin"
                 className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -70,6 +94,9 @@ const AddSuppliers = () => {
                 Contact 2
               </span>
               <input
+                name="secondary_phone"
+                onBlur={handleOnBlur}
+                value = {supplierData.secondary_phone}
                 type="number"
                 id="website-admin"
                 className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -81,6 +108,9 @@ const AddSuppliers = () => {
                 Email
               </span>
               <input
+                name="email"
+                onBlur={handleOnBlur}
+                value = {supplierData.email}
                 type="email"
                 id="website-admin"
                 className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -92,6 +122,9 @@ const AddSuppliers = () => {
                 Company Title
               </span>
               <input
+                name="company"
+                onBlur={handleOnBlur}
+                value = {supplierData.company}
                 type="text"
                 id="website-admin"
                 className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -108,6 +141,9 @@ const AddSuppliers = () => {
             </label>
             <textarea
               id="message"
+              name="address"
+              onBlur={handleOnBlur}
+              value = {supplierData.address}
               rows="4"
               className="block p-2.5 md:w-1/2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Write your thoughts here..."
