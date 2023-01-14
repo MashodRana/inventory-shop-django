@@ -5,6 +5,16 @@ import SupplierTableRow from "./SupplierTableRow";
 const ViewSuppliers = () => {
     const [suppliers, setSuppliers] = useState([]);
 
+    const removeSupplier = (supplierId) => {
+        const url = `http://127.0.0.1:8000/suppliers/${supplierId}/`;
+        fetch(url, { method: 'DELETE' })
+            .then(res => res.json())
+            .then(data => {
+                const newSuppliers = suppliers.filter(supplier => supplier.id !== supplierId);
+                setSuppliers(newSuppliers);
+            });
+    }
+
     useEffect(() => {
         const url = `http://127.0.0.1:8000/suppliers/`;
         fetch(url)
@@ -54,9 +64,13 @@ const ViewSuppliers = () => {
                             {
                                 suppliers.length
                                     ? suppliers.map(supplier => (
-                                        <SupplierTableRow supplier={supplier} />
+                                        <SupplierTableRow
+                                            key={supplier.id}
+                                            supplier={supplier}
+                                            removeSupplier={removeSupplier}
+                                        />
                                     ))
-                                    : <p>There is no Suppliers</p>
+                                    : <tr><td colSpan="9" className="p-4 text-center">There is no supplier.</td></tr>
                             }
 
                         </tbody>

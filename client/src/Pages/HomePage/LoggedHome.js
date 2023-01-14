@@ -46,8 +46,10 @@ const LoggedHome = () => {
               <Route path="add-products" element={<AddProducts />} />
 
               {/* Suppliers */}
-              <Route path="view-suppliers" element={<ViewSuppliers />} />
+              <Route path="suppliers" element={<ViewSuppliers />} />
               <Route path="add-suppliers" element={<AddSuppliers />} />
+              <Route path="suppliers/:supplierId" element={<AddSuppliers />} />
+
 
               {/* Payments */}
               <Route path="received-payments" element={<ReceivedPayments />} />

@@ -1,11 +1,10 @@
 import { faPencilSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 const SupplierTableRow = (props) => {
     const { supplier_code, name, designation, primary_phone, secondary_phone, email, company, address } = props.supplier;
-
-    console.log('====================')
-    console.log(props.supplier)
+    console.log('supplier id is :', props.supplier.id)
     return (
         <>
             <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
@@ -38,13 +37,16 @@ const SupplierTableRow = (props) => {
                     {address}
                 </td>
                 <td class="px-6 py-4 text-center">
-                    <button className="p-2">
+                    <Link className="p-2" to={`${props.supplier.id}`} >
                         <FontAwesomeIcon
                             className="text-xl text-yellow-500 hover:cursor-pointer"
                             icon={faPencilSquare}
                         />
-                    </button>
-                    <button className="p-2">
+                    </Link>
+                    <button
+                        className="p-2"
+                        onClick={() => props.removeSupplier(props.supplier.id)}
+                    >
                         <FontAwesomeIcon
                             className="text-xl text-red-500 hover:cursor-pointer"
                             icon={faTrash}

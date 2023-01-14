@@ -1,9 +1,16 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect } from "react";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const AddSuppliers = () => {
   const [supplierData, setSupplierData] = useState({});
+  let { supplierId } = useParams();
+  console.log('Supplier Id is ..................: ', supplierId)
 
   const handleOnChange = (event) => {
     const field = event.target.name;
@@ -11,6 +18,11 @@ const AddSuppliers = () => {
     let newData = { ...supplierData };
     newData[field] = value;
     setSupplierData(newData);
+  };
+  const showToastMessage = () => {
+    toast.success('Success Notification !', {
+      position: toast.POSITION.TOP_RIGHT
+    });
   };
 
   const handleAddSupplierSubmit = async (event) => {
@@ -23,7 +35,7 @@ const AddSuppliers = () => {
 
         body: JSON.stringify(supplierData) // body data type must match "Content-Type" header
       });
-      if (response.status == 201) {
+      if (response.status === 201) {
         window.location.href = "http://localhost:3000/dashboard/view-suppliers";
       }
     }
@@ -32,6 +44,35 @@ const AddSuppliers = () => {
     }
 
   };
+
+  const handleSupplierUpdate = () => {
+    const url = `http://127.0.0.1:8000/suppliers/${supplierId}/`;
+    fetch(url, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(supplierData) // body data type must match "Content-Type" header
+    })
+      .then(res => res.json())
+      .then(data => {
+        setSupplierData(data);
+        toast.success('Supplier data updated', {
+          position: toast.POSITION.TOP_RIGHT
+        });
+      })
+
+  };
+
+  useEffect(() => {
+    if (supplierId) {
+      const url = `http://127.0.0.1:8000/suppliers/${supplierId}/`
+      fetch(url)
+        .then(res => res.json())
+        .then(data => setSupplierData(data))
+    }
+    else{
+      setSupplierData({})
+    }
+  }, [supplierId])
 
   return (
     <>
@@ -149,7 +190,7 @@ const AddSuppliers = () => {
         </div>
         <div>
           <label
-            for="message"
+            htmlFor="message"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start"
           >
             Address
@@ -169,15 +210,15 @@ const AddSuppliers = () => {
       <div className="py-4 flex justify-center items-center">
         <button
           type="button"
-          onClick={handleAddSupplierSubmit}
+          onClick={supplierId ? handleSupplierUpdate : handleAddSupplierSubmit}
           className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-amber-200 hover:bg-amber-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
         >
-          <FontAwesomeIcon
+          {supplierId ? 'Update' : <><FontAwesomeIcon
             className="text-xl text-gray-500 hover:cursor-pointer"
             icon={faPlus}
-          />{" "}
-          Add Supplier
+          /> Add Supplier</>}
         </button>
+        <ToastContainer />
       </div>
       {/* </form> */}
     </>
