@@ -1,4 +1,4 @@
-import { faBarcode, faMoneyBill, faSearch, faSquareMinus, faUserPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faBarcode, faMoneyBill, faSearch, faUserPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
