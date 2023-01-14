@@ -1,7 +1,6 @@
-import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import './App.css';
-import Dashboard from "./Components/Dashboard/Dashboard";
 import Footer from './Components/Footer';
 import Header from './Components/Header';
 import About from "./Pages/About/About";

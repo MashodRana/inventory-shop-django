@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChartPie, faFileInvoice, faJarWheat } from '@fortawesome/free-solid-svg-icons'
-import { AccountBookIcon, BillingIcon, DashboardIcon, PaymentsIcon, ProductsIcon, PurchaseIcon, SalesIcon, SupplierIcon } from "./Icon";
+import { faFileInvoice, faJarWheat } from '@fortawesome/free-solid-svg-icons'
+import { AccountBookIcon, DashboardIcon, PaymentsIcon, ProductsIcon, PurchaseIcon, SalesIcon, SupplierIcon } from "./Icon";
 
 const SideMenu = () => {
   return (
@@ -258,7 +258,7 @@ const SideMenu = () => {
               <ul id="dropdown-example4" class="hidden py-2 space-y-2">
                 <li>
                   <Link
-                    to="view-suppliers"
+                    to="suppliers"
                     class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
                     View Suppliers
