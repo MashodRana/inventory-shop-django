@@ -1,6 +1,7 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -8,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const AddProducts = () => {
   const [productInfo, setProductInfo] = useState({});
   const [units, setUnits] = useState([]);
+  const { productId } = useParams();
   const unitUrl = `http://127.0.0.1:8000/units/`;
   const productsUrl = `http://127.0.0.1:8000/products/`
 
@@ -40,16 +42,43 @@ const AddProducts = () => {
     }
   }
 
+  const handleUpdateProduct = async () => {
+    // Send the updated data to update
+    const response = await fetch(`${productsUrl}${productId}/`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(productInfo)
+    })
+
+    // Check for succesfull request
+    if (response.status === 200) {
+      toast.success('Product update successfull!', {
+        position: toast.POSITION.TOP_RIGHT
+      });
+    }
+    else {
+      toast.error('Prodcut update failed!', {
+        position: toast.POSITION.TOP_RIGHT
+      });
+      setProductInfo(productInfo)
+    }
+  }
+
   useEffect(() => {
     // Load units from the server
     fetch(unitUrl)
       .then(res => res.json())
       .then(data => setUnits(data))
-  }, [unitUrl])
+
+    if (productId) {
+      fetch(`${productsUrl}${productId}/`)
+        .then(res => res.json())
+        .then(data => setProductInfo(data))
+    }
+  }, [unitUrl, productId])
 
   return (
     <>
-      {console.log(productInfo)}
       <h1 className="text-start sm:text-3xl text-xl font-medium title-font text-gray-900"> New Product</h1>
       <p className="text-md text-start">
         Add new products with details information.
@@ -99,6 +128,7 @@ const AddProducts = () => {
               onChange={handleOnChange}
               className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
+              <option selected value={productInfo.unit}>{productInfo.unit_title}</option>
               {units.length ? units.map((unit, idx) => (<option key={idx} value={unit.id}>{unit.title}</option>)) : ""}
               {/* <option value="kg">KG</option>
               <option value="l">Litter</option>
@@ -128,12 +158,13 @@ const AddProducts = () => {
 
       <div className="py-4 flex justify-center items-center">
         <button
-          onClick={handleAddProduct}
+          onClick={productId ? handleUpdateProduct : handleAddProduct}
           type="button"
           className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-amber-200 hover:bg-amber-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
         >
-          <FontAwesomeIcon className="text-xl text-gray-500 hover:cursor-pointer" icon={faPlus} />{" "}
-          Add Product
+          {
+            productId ? 'Update' : <><FontAwesomeIcon className="text-xl text-gray-500 hover:cursor-pointer" icon={faPlus} />Add Product</>
+          }
         </button>
       </div>
 
