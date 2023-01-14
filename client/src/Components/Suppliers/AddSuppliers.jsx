@@ -1,16 +1,14 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect } from "react";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
 const AddSuppliers = () => {
   const [supplierData, setSupplierData] = useState({});
-  let { supplierId } = useParams();
-  console.log('Supplier Id is ..................: ', supplierId)
+  const { supplierId } = useParams();
 
   const handleOnChange = (event) => {
     const field = event.target.name;
@@ -18,11 +16,6 @@ const AddSuppliers = () => {
     let newData = { ...supplierData };
     newData[field] = value;
     setSupplierData(newData);
-  };
-  const showToastMessage = () => {
-    toast.success('Success Notification !', {
-      position: toast.POSITION.TOP_RIGHT
-    });
   };
 
   const handleAddSupplierSubmit = async (event) => {
@@ -69,7 +62,7 @@ const AddSuppliers = () => {
         .then(res => res.json())
         .then(data => setSupplierData(data))
     }
-    else{
+    else {
       setSupplierData({})
     }
   }, [supplierId])

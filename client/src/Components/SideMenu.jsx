@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChartPie, faFileInvoice, faJarWheat } from '@fortawesome/free-solid-svg-icons'
-import { AccountBookIcon, BillingIcon, DashboardIcon, PaymentsIcon, ProductsIcon, PurchaseIcon, SalesIcon, SupplierIcon } from "./Icon";
+import { faFileInvoice, faJarWheat } from '@fortawesome/free-solid-svg-icons'
+import { AccountBookIcon, DashboardIcon, PaymentsIcon, ProductsIcon, PurchaseIcon, SalesIcon, SupplierIcon } from "./Icon";
 
 const SideMenu = () => {
   return (
