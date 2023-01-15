@@ -75,7 +75,7 @@ const AddProducts = () => {
         .then(res => res.json())
         .then(data => setProductInfo(data))
     }
-  }, [unitUrl, productId])
+  }, [unitUrl, productId, productsUrl])
 
   return (
     <>
