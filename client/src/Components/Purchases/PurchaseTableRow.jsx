@@ -4,21 +4,25 @@ import { useState } from "react";
 
 
 const PurchaseTableRow = (props) => {
-    const { id, name, unit, unit_title, price, quantity, subtotal } = props.toPurchaseProduct;
+    const { id, name, unit_title } = props.toPurchaseProduct;
     const [productInfo, setProductInfo] = useState({ price: 0.0, quantity: 0, subtotal: 0.0 });
 
     const handleOnChange = (evnt) => {
         let newProductInfo = { ...productInfo };
         newProductInfo[evnt.target.name] = evnt.target.value;
-        newProductInfo.subtotal = parseFloat(newProductInfo.price) * parseInt(newProductInfo.quantity);
         setProductInfo(newProductInfo)
 
     }
     const handleOnBlur = () => {
+        let newProductInfo = { ...productInfo };
+        newProductInfo.subtotal = (newProductInfo.price ? parseFloat(newProductInfo.price) : 0) * (newProductInfo.quantity ? parseInt(newProductInfo.quantity) : 0);
+        setProductInfo(newProductInfo)
+
         props.updatePurchasedList({
             ...props.toPurchaseProduct,
-            ...productInfo
+            ...newProductInfo
         })
+        props.calculateTotalCost()
     }
 
     return (

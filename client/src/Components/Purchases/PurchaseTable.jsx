@@ -1,10 +1,9 @@
 
-import { useState } from "react";
 import PurchaseTableRow from "./PurchaseTableRow";
+
 
 const PurchaseTable = (props) => {
     const toPurchaseProducts = props.toPurchaseProducts;
-    // const [purchasedProducts, setPurchasedProducts] = useState([])
 
     return (
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -48,7 +47,7 @@ const PurchaseTable = (props) => {
                 <tfoot>
                     <tr class="font-semibold text-gray-900 dark:text-white">
                         <th scope="row" colspan="3" class="px-6 py-3 text-lg text-amber-500">Total</th>
-                        <td colspan="2" class="px-6 py-3 text-end">$ 21,000</td>
+                        <td colspan="2" class="px-6 py-3 text-end">Tk. {props.total}</td>
                     </tr>
                 </tfoot>
             </table>

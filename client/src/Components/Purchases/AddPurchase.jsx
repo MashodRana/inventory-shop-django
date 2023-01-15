@@ -11,6 +11,7 @@ const AddPurchase = () => {
     const [products, setProducts] = useState([]);
     const [toPurchaseProducts, setToPurchasProducts] = useState([]);
     const [purchasedProducts, setPurchasedProducts] = useState([]);
+    const [total, setTotal] = useState(0.0);
 
     const productPurchasing = (singleProductArray) => {
         // This will update the state which is used to track the products which will be purchased.
@@ -25,19 +26,24 @@ const AddPurchase = () => {
     }
 
     const removeFromPurchasedList = (productId) => {
-        const filteredProduct = toPurchaseProducts.filter(p => p.id !== productId)
         setToPurchasProducts(
-            filteredProduct
+            toPurchaseProducts.filter(p => p.id !== productId)
         )
-        setPurchasedProducts(
-            purchasedProducts.filter(p => p.id != productId)
-        )
+        const filteredProducts = purchasedProducts.filter(p => p.id !== productId);
+        const totalCost = filteredProducts.reduce((t, p) => t + p.subtotal, 0);
+        setPurchasedProducts(filteredProducts);
+        setTotal(totalCost);
+
     }
 
     const updatePurchasedList = (purchasedProductInfo) => {
         let newPurchasedProducts = purchasedProducts.filter(pp => pp.id !== purchasedProductInfo.id);
         newPurchasedProducts.push(purchasedProductInfo);
+        const totalCost = newPurchasedProducts.reduce((t, p) => t + p.subtotal, 0)
         setPurchasedProducts(newPurchasedProducts);
+        setTotal(totalCost)
+        console.log('In updatePurchasedList after: ', JSON.stringify(purchasedProducts))
+
     }
     useEffect(() => {
         fetch(productUrl)
@@ -48,7 +54,6 @@ const AddPurchase = () => {
 
     return (
         <>
-        {console.log("Product I purchase: ", JSON.stringify(purchasedProducts))}
             <h1 className="text-start sm:text-3xl text-xl font-medium title-font text-gray-900">Add Purchase</h1>
             <p className="text-md text-start">Purchase new products and entry them here to track.</p>
             <div class="container px-5 py-6 mx-auto">
@@ -95,6 +100,7 @@ const AddPurchase = () => {
                 toPurchaseProducts={toPurchaseProducts}
                 updatePurchasedList={updatePurchasedList}
                 removeFromPurchasedList={removeFromPurchasedList}
+                total={total}
             />
 
             <div className="py-4 flex justify-center items-center">
