@@ -40,6 +40,7 @@ const PurchaseTable = (props) => {
                                 key={toPurchaseProduct.id}
                                 toPurchaseProduct={toPurchaseProduct}
                                 updatePurchasedList={props.updatePurchasedList}
+                                removeFromPurchasedList={props.removeFromPurchasedList}
                             />))
                             : <tr><th>No product purchased.</th></tr>
                     }

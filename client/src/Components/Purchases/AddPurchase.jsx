@@ -24,6 +24,16 @@ const AddPurchase = () => {
         setToPurchasProducts(newPurchansingProducts);
     }
 
+    const removeFromPurchasedList = (productId) => {
+        const filteredProduct = toPurchaseProducts.filter(p => p.id !== productId)
+        setToPurchasProducts(
+            filteredProduct
+        )
+        setPurchasedProducts(
+            purchasedProducts.filter(p => p.id != productId)
+        )
+    }
+
     const updatePurchasedList = (purchasedProductInfo) => {
         let newPurchasedProducts = purchasedProducts.filter(pp => pp.id !== purchasedProductInfo.id);
         newPurchasedProducts.push(purchasedProductInfo);
@@ -35,9 +45,10 @@ const AddPurchase = () => {
             .then(data => setProducts(data))
     }, [productUrl])
 
-    
+
     return (
         <>
+        {console.log("Product I purchase: ", JSON.stringify(purchasedProducts))}
             <h1 className="text-start sm:text-3xl text-xl font-medium title-font text-gray-900">Add Purchase</h1>
             <p className="text-md text-start">Purchase new products and entry them here to track.</p>
             <div class="container px-5 py-6 mx-auto">
@@ -80,7 +91,11 @@ const AddPurchase = () => {
             </div>
 
             {/* Product Table */}
-            <PurchaseTable toPurchaseProducts={toPurchaseProducts} updatePurchasedList={updatePurchasedList} />
+            <PurchaseTable
+                toPurchaseProducts={toPurchaseProducts}
+                updatePurchasedList={updatePurchasedList}
+                removeFromPurchasedList={removeFromPurchasedList}
+            />
 
             <div className="py-4 flex justify-center items-center">
                 <button
