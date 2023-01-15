@@ -124,15 +124,11 @@ const AddProducts = () => {
             <select
               id="underline_select"
               name='unit'
-              defaultValue={productInfo.unit}
+              value={productInfo.unit}
               onChange={handleOnChange}
               className="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
-              <option selected value={productInfo.unit}>{productInfo.unit_title}</option>
               {units.length ? units.map((unit, idx) => (<option key={idx} value={unit.id}>{unit.title}</option>)) : ""}
-              {/* <option value="kg">KG</option>
-              <option value="l">Litter</option>
-              <option value="p">Pices</option> */}
             </select>
           </div>
 
