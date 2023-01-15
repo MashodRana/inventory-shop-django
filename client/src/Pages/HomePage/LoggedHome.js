@@ -40,8 +40,10 @@ const LoggedHome = () => {
               <Route path="return-purchase" element={<PurchaseReturn />} />
 
               {/* Products */}
-              <Route path="view-products" element={<ViewProducts />} />
+              <Route path="products" element={<ViewProducts />} />
               <Route path="add-products" element={<AddProducts />} />
+              <Route path="products/:productId" element={<AddProducts />} />
+
 
               {/* Suppliers */}
               <Route path="suppliers" element={<ViewSuppliers />} />
