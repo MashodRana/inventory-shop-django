@@ -9,7 +9,8 @@ import PurchaseTable from "./PurchaseTable";
 const AddPurchase = () => {
     const productUrl = ` http://127.0.0.1:8000/products/`
     const [products, setProducts] = useState([]);
-    const [toPurchaseProducts, setToPurchasProducts] = useState([])
+    const [toPurchaseProducts, setToPurchasProducts] = useState([]);
+    const [purchasedProducts, setPurchasedProducts] = useState([]);
 
     const productPurchasing = (singleProductArray) => {
         // This will update the state which is used to track the products which will be purchased.
@@ -22,11 +23,19 @@ const AddPurchase = () => {
         const newPurchansingProducts = [...toPurchaseProducts, { ...willPurchaseProduct }]
         setToPurchasProducts(newPurchansingProducts);
     }
+
+    const updatePurchasedList = (purchasedProductInfo) => {
+        let newPurchasedProducts = purchasedProducts.filter(pp => pp.id !== purchasedProductInfo.id);
+        newPurchasedProducts.push(purchasedProductInfo);
+        setPurchasedProducts(newPurchasedProducts);
+    }
     useEffect(() => {
         fetch(productUrl)
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [productUrl])
+
+    
     return (
         <>
             <h1 className="text-start sm:text-3xl text-xl font-medium title-font text-gray-900">Add Purchase</h1>
@@ -71,7 +80,7 @@ const AddPurchase = () => {
             </div>
 
             {/* Product Table */}
-            <PurchaseTable toPurchaseProducts={toPurchaseProducts}  />
+            <PurchaseTable toPurchaseProducts={toPurchaseProducts} updatePurchasedList={updatePurchasedList} />
 
             <div className="py-4 flex justify-center items-center">
                 <button

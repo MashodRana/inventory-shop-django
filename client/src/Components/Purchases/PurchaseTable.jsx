@@ -39,6 +39,7 @@ const PurchaseTable = (props) => {
                             ? toPurchaseProducts.map(toPurchaseProduct => (<PurchaseTableRow
                                 key={toPurchaseProduct.id}
                                 toPurchaseProduct={toPurchaseProduct}
+                                updatePurchasedList={props.updatePurchasedList}
                             />))
                             : <tr><th>No product purchased.</th></tr>
                     }
