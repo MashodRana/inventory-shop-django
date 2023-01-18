@@ -29,3 +29,10 @@ class PurchaseView(APIView):
                 purchase.delete()
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
+
+class PurchasedProductsView(APIView):
+    def get(self, request, format=None):
+        purchased_products = PurchasedProduct.objects.all()
+        serializer = PurchasedProductSerializer(purchased_products, many=True)
+        return Response(serializer.data)
+

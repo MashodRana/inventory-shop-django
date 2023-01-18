@@ -9,7 +9,7 @@ from product.models import Product
 class Purchase(TimeStamp):
     supplier = models.ForeignKey(to=Supplier, on_delete=models.SET_NULL, null=True)
     note = models.TextField()
-    total_price = models.FloatField()
+    total = models.FloatField()
 
     def __str__(self):
         return f"order-{self.pk}"
