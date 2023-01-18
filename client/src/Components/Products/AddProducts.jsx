@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import AddUnitModal from "../common/AddUnitModal";
 
 const AddProducts = () => {
   const [productInfo, setProductInfo] = useState({});
@@ -130,6 +130,15 @@ const AddProducts = () => {
             >
               {units.length ? units.map((unit, idx) => (<option key={idx} value={unit.id}>{unit.title}</option>)) : ""}
             </select>
+            {/* <!-- Modal toggle --> */}
+            <button
+              data-modal-target="addUnitModal"
+              data-modal-toggle="addUnitModal"
+              class="m-2 md:my-0 md:mx-2 block text-white bg-amber-400 hover:bg-amber-500 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              type="button">
+              Add New Unit
+            </button>
+            <AddUnitModal />
           </div>
 
         </div>
