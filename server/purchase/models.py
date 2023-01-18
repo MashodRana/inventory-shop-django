@@ -7,12 +7,19 @@ from product.models import Product
 
 # Create your models here.
 class Purchase(TimeStamp):
+    bill_no = models.AutoField(primary_key=True)
     supplier = models.ForeignKey(to=Supplier, on_delete=models.SET_NULL, null=True)
     note = models.TextField()
     total = models.FloatField()
+    paid_amount = models.FloatField()
+    due_amount = models.FloatField()
 
     def __str__(self):
-        return f"order-{self.pk}"
+        return f"bill-{self.bill_no}"
+
+    def get_purchased_products(self):
+        """ Return the list of purchased proudcts """
+        return PurchasedProduct.objects.filter(bill_no=self)
 
 
 class PurchasedProduct(TimeStamp):
