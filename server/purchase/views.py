@@ -8,7 +8,6 @@ from purchase.serializers import PurchaseSerializer, PurchasedProductSerializer
 
 
 # Create your views here.
-
 class PurchaseView(APIView):
     def get(self, request, format=None):
         purchases = Purchase.objects.all()
