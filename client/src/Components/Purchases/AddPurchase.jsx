@@ -2,8 +2,8 @@ import Select from "react-dropdown-select";
 import { faMoneyBill } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import PurchaseTable from "./PurchaseTable";
 
@@ -65,35 +65,40 @@ const AddPurchase = () => {
     const totalCost = newPurchasedProducts.reduce((t, p) => t + p.subtotal, 0);
     setPurchasedProducts(newPurchasedProducts);
     setTotal(totalCost);
-
   };
 
   const getPurhasedDetail = () => {
     const newData = { ...purchasedDetail };
-    newData['products'] = [...purchasedProducts];
-    newData['total_price'] = total;
+    newData["products"] = purchasedProducts.map((p) => {
+      return {
+        product: p.id,
+        quantity: p.quantity,
+        price: p.price,
+        total_price: p.subtotal,
+      };
+    });
+
+    newData["total"] = total;
     return newData;
-  }
+  };
 
   const finalizeProductPurchaing = async () => {
     const response = await fetch(purchaseUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(getPurhasedDetail())
-    })
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(getPurhasedDetail()),
+    });
 
     if (response.status === 201) {
-      toast.success('Product purchasing successfull!', {
-        position: toast.POSITION.TOP_RIGHT
+      toast.success("Product purchasing successfull!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } else {
+      toast.error("Prodcut purchasing failed!", {
+        position: toast.POSITION.TOP_RIGHT,
       });
     }
-    else {
-      toast.error('Prodcut purchasing failed!', {
-        position: toast.POSITION.TOP_RIGHT
-      });
-    }
-
-  }
+  };
   useEffect(() => {
     fetch(productUrl)
       .then((res) => res.json())
@@ -128,7 +133,7 @@ const AddPurchase = () => {
             // values={[]}
             className="text-start w-100"
             onChange={productPurchasing}
-          // itemRenderer={customItemRenderer}
+            // itemRenderer={customItemRenderer}
           />
         </div>
         <div class="flex my-4">
@@ -144,10 +149,10 @@ const AddPurchase = () => {
             // values={[]}
             className="text-start rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             onChange={getSupplier}
-          // itemRenderer={customItemRenderer}
+            // itemRenderer={customItemRenderer}
           />
         </div>
-        <div >
+        <div>
           <label
             htmlFor="message"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start"
