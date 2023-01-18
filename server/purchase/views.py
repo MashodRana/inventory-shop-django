@@ -1,8 +1,14 @@
 from django.shortcuts import render
+from rest_framework.views import APIView
+from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
+from rest_framework.response import Response
+
+from purchase.models import Purchase, PurchasedProduct
+from purchase.serializers import PurchaseSerializer, PurchasedProductSerializer
+
 
 # Create your views here.
-<<<<<<< Updated upstream
-=======
+
 class PurchaseView(APIView):
     def get(self, request, format=None):
         purchases = Purchase.objects.all()
@@ -22,7 +28,6 @@ class PurchaseView(APIView):
                 return Response(serializer.data, status=HTTP_201_CREATED)
             else:
                 purchase.delete()
-        print(serializer.errors)
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
 
@@ -31,4 +36,4 @@ class PurchasedProductsView(APIView):
         purchased_products = PurchasedProduct.objects.all()
         serializer = PurchasedProductSerializer(purchased_products, many=True)
         return Response(serializer.data)
->>>>>>> Stashed changes
+
