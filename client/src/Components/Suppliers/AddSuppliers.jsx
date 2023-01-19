@@ -19,7 +19,6 @@ const AddSuppliers = () => {
   };
 
   const handleAddSupplierSubmit = async (event) => {
-    console.log(" I am in the handleAddSupplierSubmit")
     const url = `http://127.0.0.1:8000/suppliers/`
     try {
       const response = await fetch(url, {

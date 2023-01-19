@@ -83,11 +83,14 @@ const AddPurchase = () => {
     return newData;
   };
 
-  const finalizeProductPurchaing = async () => {
+  const finalizeProductPurchaing = async (paidAmount, dueAmount) => {
+    let data = getPurhasedDetail();
+    data['paid_amount'] = paidAmount;
+    data['due_amount'] = dueAmount;
     const response = await fetch(purchaseUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(getPurhasedDetail()),
+      body: JSON.stringify(data),
     });
 
     if (response.status === 201) {
@@ -199,6 +202,7 @@ const AddPurchase = () => {
         purchasedProducts={purchasedProducts}
         supplier={purchasedDetail.supplierName}
         total={total}
+        finalizeProductPurchaing={finalizeProductPurchaing}
       ></PurchasePaymentModal>
       {/* Toaster to show confirmation message */}
       <ToastContainer />

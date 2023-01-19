@@ -13,7 +13,6 @@ const PurchasedItems = () => {
 
   return (
     <>
-    {console.log(purchasedProducts)}
       <h1 className="text-start sm:text-3xl text-2xl font-medium title-font text-gray-900">
         Purchased Items
       </h1>

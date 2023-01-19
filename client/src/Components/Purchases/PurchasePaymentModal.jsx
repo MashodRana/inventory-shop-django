@@ -13,6 +13,11 @@ const PurchasePaymentModal = (props) => {
     const handleOnChange = (e) => {
         setPaidAmount(e.target.value)
     }
+
+    const purchasingDone = () => {
+        props.finalizeProductPurchaing(paidAmount, dueAmount);
+    }
+
     return (
         <>
             {console.log('-----------------', JSON.stringify(products))}
@@ -107,8 +112,10 @@ const PurchasePaymentModal = (props) => {
                         {/* <!-- Modal footer --> */}
                         <div class="flex items-center justify-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
                             <button data-modal-hide="purchasePaymentModal"
-                                // onClick={}
-                                type="button" class="text-white bg-amber-400 hover:bg-amber-500 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-amber-600 dark:hover:bg-amber-700 dark:focus:ring-amber-800">Submit</button>
+                                onClick={purchasingDone}
+                                type="button"
+                                class="text-white bg-green-400 hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                            >Purchased</button>
 
                         </div>
                     </div>

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const SupplierTableRow = (props) => {
     const { supplier_code, name, designation, primary_phone, secondary_phone, email, company, address } = props.supplier;
-    console.log('supplier id is :', props.supplier.id)
     return (
         <>
             <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
