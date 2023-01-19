@@ -19,7 +19,7 @@ class PurchaseView(APIView):
         if serializer.is_valid():
             purchase = serializer.save()
             for i, product in enumerate(request.data['products']):
-                request.data['products'][i]['bill_no'] = purchase.id
+                request.data['products'][i]['bill_no'] = purchase.bill_no
 
             serializer = PurchasedProductSerializer(data=request.data['products'], many=True)
             if serializer.is_valid():
@@ -35,4 +35,3 @@ class PurchasedProductsView(APIView):
         purchased_products = PurchasedProduct.objects.all()
         serializer = PurchasedProductSerializer(purchased_products, many=True)
         return Response(serializer.data)
-
