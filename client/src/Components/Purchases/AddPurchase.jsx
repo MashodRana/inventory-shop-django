@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import PurchaseTable from "./PurchaseTable";
+import PurchasePaymentModal from "./PurchasePaymentModal";
 
 const AddPurchase = () => {
   const productUrl = ` http://127.0.0.1:8000/products/`;
@@ -36,9 +37,9 @@ const AddPurchase = () => {
     setToPurchasProducts(newPurchansingProducts);
   };
   const getSupplier = (singleSupplierArray) => {
-    const supplierId = singleSupplierArray[0].value;
     const newData = { ...purchasedDetail };
-    newData["supplier"] = supplierId;
+    newData["supplier"] = singleSupplierArray[0].value;
+    newData["supplierName"] = singleSupplierArray[0].label;
     setPurchasedDetail(newData);
   };
 
@@ -133,7 +134,7 @@ const AddPurchase = () => {
             // values={[]}
             className="text-start w-100"
             onChange={productPurchasing}
-            // itemRenderer={customItemRenderer}
+          // itemRenderer={customItemRenderer}
           />
         </div>
         <div class="flex my-4">
@@ -149,7 +150,7 @@ const AddPurchase = () => {
             // values={[]}
             className="text-start rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             onChange={getSupplier}
-            // itemRenderer={customItemRenderer}
+          // itemRenderer={customItemRenderer}
           />
         </div>
         <div>
@@ -182,7 +183,9 @@ const AddPurchase = () => {
       <div className="py-4 flex justify-center items-center">
         <button
           type="button"
-          onClick={finalizeProductPurchaing}
+          data-modal-target="purchasePaymentModal"
+          data-modal-toggle="purchasePaymentModal"
+          // onClick={finalizeProductPurchaing}
           class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-amber-200 hover:bg-amber-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
         >
           <span className="mr-2">
@@ -191,6 +194,12 @@ const AddPurchase = () => {
           Payment
         </button>
       </div>
+      {/*  */}
+      <PurchasePaymentModal
+        purchasedProducts={purchasedProducts}
+        supplier={purchasedDetail.supplierName}
+        total={total}
+      ></PurchasePaymentModal>
       {/* Toaster to show confirmation message */}
       <ToastContainer />
     </>

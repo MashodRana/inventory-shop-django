@@ -22,7 +22,6 @@ const PurchaseTableRow = (props) => {
             ...props.toPurchaseProduct,
             ...newProductInfo
         })
-        props.calculateTotalCost()
     }
 
     return (
