@@ -9,7 +9,7 @@ import PurchaseTable from "./PurchaseTable";
 import PurchasePaymentModal from "./PurchasePaymentModal";
 
 const AddPurchase = () => {
-  const productUrl = ` http://127.0.0.1:8000/products/`;
+  const productUrl = `http://127.0.0.1:8000/products/`;
   const suppliersUrl = `http://127.0.0.1:8000/suppliers/`;
   const purchaseUrl = `http://127.0.0.1:8000/purchase/`;
 
@@ -121,11 +121,11 @@ const AddPurchase = () => {
       <p className="text-md text-start">
         Purchase new products and entry them here to track.
       </p>
-      <div class="container px-5 py-6 mx-auto">
+      <div className="container px-5 py-6 mx-auto">
         {/* product selection */}
 
         <div className="flex ">
-          <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+          <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
             Product
           </span>
           <Select
@@ -140,8 +140,8 @@ const AddPurchase = () => {
           // itemRenderer={customItemRenderer}
           />
         </div>
-        <div class="flex my-4">
-          <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+        <div className="flex my-4">
+          <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
             Supplier
           </span>
           <Select
@@ -189,7 +189,7 @@ const AddPurchase = () => {
           data-modal-target="purchasePaymentModal"
           data-modal-toggle="purchasePaymentModal"
           // onClick={finalizeProductPurchaing}
-          class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-amber-200 hover:bg-amber-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-amber-200 hover:bg-amber-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
         >
           <span className="mr-2">
             <FontAwesomeIcon icon={faMoneyBill} />
