@@ -44,30 +44,42 @@ const PurchasedItems = () => {
                 <th scope="col" className="px-6 py-6 w-2/12 text-center">
                   Total Price
                 </th>
-                <th scope="col" className="px-6 py-6 w-1/12 text-center">
-                  Action
-                </th>
               </tr>
             </thead>
             <tbody>
-              <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  B-001
-                </th>
-                <td className="px-6 py-4">12-08-2022</td>
-                <td className="px-6 py-4">Abul-Uniliver</td>
-                <td className="px-6 py-4">
-                  Lotion - 1 box - 2000 tk <br />
-                  Shampoo - 1 box - 2000 tk <br />
-                </td>
-                <td className="px-6 py-4 text-center">3000 tk</td>
-                <td className="px-6 py-4 text-center">1000 tk</td>
-
-                <td className="px-6 py-4 text-center">Edit</td>
-              </tr>
+              {purchasedProducts.length ? (
+                purchasedProducts.map((purchasedProduct) => (
+                  <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      {purchasedProduct.bill_not}
+                    </th>
+                    <td className="px-6 py-4">{purchasedProduct.created_at}</td>
+                    <td className="px-6 py-4">Abul-Uniliver</td>
+                    <td className="px-6 py-4">
+                      Lotion - 1 box - 2000 tk <br />
+                      Shampoo - 1 box - 2000 tk <br />
+                    </td>
+                    <td className="px-6 py-4 text-center">
+                      {purchasedProduct.price}
+                    </td>
+                    <td className="px-6 py-4 text-center">
+                      {purchasedProduct.quantity}
+                    </td>
+                    <td className="px-6 py-4 text-center">
+                      {purchasedProduct.total_price}
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                  <td className="px-6 py-4 text-center">
+                    No product purchased yet.
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
