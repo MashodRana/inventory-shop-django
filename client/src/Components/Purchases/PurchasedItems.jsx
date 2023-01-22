@@ -27,7 +27,7 @@ const PurchasedItems = () => {
                 <th scope="col" className="px-6 py-6 w-1/12">
                   Bill No.
                 </th>
-                <th scope="col" className="px-6 py-6 w-1/12">
+                <th scope="col" className="px-6 py-6 w-2/12">
                   Date
                 </th>
                 <th scope="col" className="px-6 py-6 w-1/12">
@@ -39,7 +39,7 @@ const PurchasedItems = () => {
                 <th scope="col" className="px-6 py-6 w-2/12 text-center">
                   Price
                 </th>
-                <th scope="col" className="px-6 py-6 w-2/12 text-center">
+                <th scope="col" className="px-6 py-6 w-1  /12 text-center">
                   Quantity
                 </th>
                 <th scope="col" className="px-6 py-6 w-2/12 text-center">
@@ -61,10 +61,9 @@ const PurchasedItems = () => {
                       <span>Purchased: {new Date(purchasedProduct.created_at).toDateString()}</span> <br /><br />
                       <span>Updated: {new Date(purchasedProduct.updated_at).toDateString()}</span>
                     </td>
-                    <td className="px-6 py-4">Abul-Uniliver</td>
+                    <td className="px-6 py-4">{purchasedProduct.supplier}</td>
                     <td className="px-6 py-4">
-                      Lotion - 1 box - 2000 tk <br />
-                      Shampoo - 1 box - 2000 tk <br />
+                      {purchasedProduct.product_name}
                     </td>
                     <td className="px-6 py-4 text-center">
                       {purchasedProduct.price}
