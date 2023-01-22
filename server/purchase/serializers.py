@@ -10,6 +10,8 @@ class PurchaseSerializer(serializers.ModelSerializer):
 
 
 class PurchasedProductSerializer(serializers.ModelSerializer):
+    product_name = serializers.CharField(source='product.name', required=False)
+    supplier = serializers.CharField(source='bill_no.supplier')
     class Meta:
         model = PurchasedProduct
         fields = "__all__"
