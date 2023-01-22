@@ -13,6 +13,7 @@ const PurchasedItems = () => {
 
   return (
     <>
+      {console.log('purchased products', JSON.stringify(purchasedProducts))}
       <h1 className="text-start sm:text-3xl text-2xl font-medium title-font text-gray-900">
         Purchased Items
       </h1>
@@ -54,9 +55,12 @@ const PurchasedItems = () => {
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                     >
-                      {purchasedProduct.bill_not}
+                      {purchasedProduct.bill_no}
                     </th>
-                    <td className="px-6 py-4">{purchasedProduct.created_at}</td>
+                    <td className="px-6 py-4">
+                      <span>Purchased: {new Date(purchasedProduct.created_at).toDateString()}</span> <br /><br />
+                      <span>Updated: {new Date(purchasedProduct.updated_at).toDateString()}</span>
+                    </td>
                     <td className="px-6 py-4">Abul-Uniliver</td>
                     <td className="px-6 py-4">
                       Lotion - 1 box - 2000 tk <br />
@@ -75,7 +79,7 @@ const PurchasedItems = () => {
                 ))
               ) : (
                 <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-6 py-4 text-center" colSpan={`7`}>
                     No product purchased yet.
                   </td>
                 </tr>
