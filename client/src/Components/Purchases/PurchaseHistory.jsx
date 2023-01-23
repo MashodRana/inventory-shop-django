@@ -2,10 +2,32 @@ import { useState, useEffect } from "react";
 import { faPencilSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const PurchaseHistory = (props) => {
+const PurchaseHistory = () => {
   const purchasedUrl = `http://127.0.0.1:8000/purchase/`;
+  const purchasedProductUrl = `http://127.0.0.1:8000/purchase/`;
   const [purchasedProducts, setPurchasedProudcts] = useState([]);
+
+  const removePurchase = async (purchasedId) => {
+    const response = await fetch(`${purchasedProductUrl}${purchasedId}/`, {
+      method: 'DELETE'
+    })
+
+    if (response.status === 204) {
+      setPurchasedProudcts(purchasedProducts.filter(purchasedProduct => purchasedProduct.bill_no !== purchasedId))
+      // Show message that product removed.
+      toast.success('Purchase removed!', {
+        position: toast.POSITION.TOP_RIGHT
+      });
+    }
+    else {
+      toast.error('Purchase remove failed!', {
+        position: toast.POSITION.TOP_RIGHT
+      });
+    }
+  }
 
   useEffect(() => {
     fetch(purchasedUrl)
@@ -79,7 +101,7 @@ const PurchaseHistory = (props) => {
                       </Link>
                       <button
                         className="p-2"
-                        onClick={() => props.removeProduct(2)}
+                        onClick={() => removePurchase(purchasedProduct.bill_no)}
                       >
                         <FontAwesomeIcon
                           className="text-xl text-red-500 hover:cursor-pointer"
@@ -100,6 +122,9 @@ const PurchaseHistory = (props) => {
           </table>
         </div>
       </div>
+
+      {/* Toaster to show confirmation message */}
+      <ToastContainer />
     </>
   );
 };

@@ -7,11 +7,15 @@ import "react-toastify/dist/ReactToastify.css";
 
 import PurchaseTable from "./PurchaseTable";
 import PurchasePaymentModal from "./PurchasePaymentModal";
+import { useParams } from "react-router-dom";
 
 const AddPurchase = () => {
   const productUrl = `http://127.0.0.1:8000/products/`;
   const suppliersUrl = `http://127.0.0.1:8000/suppliers/`;
   const purchaseUrl = `http://127.0.0.1:8000/purchase/`;
+  const purchasedProductUrl = `http://127.0.0.1:8000/purchase/`;
+
+  const {purchasedId} = useParams();
 
   const [products, setProducts] = useState([]);
   const [toPurchaseProducts, setToPurchasProducts] = useState([]);
@@ -111,6 +115,12 @@ const AddPurchase = () => {
     fetch(suppliersUrl)
       .then((res) => res.json())
       .then((data) => setSuppliers(data));
+    
+    if(purchasedId){
+      fetch(`${purchasedProductUrl}${purchasedId}/`)
+      .then(res=>res.json())
+      .then(data=> setToPurchasProducts(data.products))
+    }
   }, [productUrl, suppliersUrl]);
 
   return (
