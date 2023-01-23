@@ -14,6 +14,7 @@ const PurchaseHistory = (props) => {
   }, [purchasedUrl]);
   return (
     <>
+      {console.log('purchase history: ', JSON.stringify(purchasedProducts))}
       <h1 className="text-start sm:text-3xl text-2xl font-medium title-font text-gray-900">
         Purchase History
       </h1>
@@ -36,7 +37,7 @@ const PurchaseHistory = (props) => {
                 <th scope="col" class="px-6 py-6 w-4/12 text-center">
                   Remarks
                 </th>
-                <th scope="col" class="px-6 py-6 w-2/12 text-center">
+                <th scope="col" class="px-6 py-6 w-2/12 text-end">
                   Paid
                 </th>
                 <th scope="col" class="px-6 py-6 w-2/12 text-center">
@@ -58,19 +59,19 @@ const PurchaseHistory = (props) => {
                       {purchasedProduct.bill_no}
                     </th>
                     <td class="px-6 py-4">
-                      <p>Purchased Date: {purchasedProduct.created_at}</p>
-                      <p>Purchased Date: {purchasedProduct.updated_at}</p>
+                      <span>Purchased: {new Date(purchasedProduct.created_at).toDateString()}</span> <br /><br />
+                      <span>Updated: {new Date(purchasedProduct.updated_at).toDateString()}</span>
                     </td>
                     <td class="px-6 py-4">{purchasedProduct.supplier}</td>
                     <td class="px-6 py-4">{purchasedProduct.note}</td>
-                    <td class="px-6 py-4 text-center">
+                    <td class="px-6 py-4 text-end">
                       {purchasedProduct.paid_amount}
                     </td>
-                    <td class="px-6 py-4 text-center">
+                    <td class="px-6 py-4 text-end">
                       {purchasedProduct.due_amount}
                     </td>
                     <td class="px-6 py-4 text-center">
-                      <Link className="p-2" to={`${props.product.id}`}>
+                      <Link className="p-2" to={`${purchasedProduct.bill_no}`}>
                         <FontAwesomeIcon
                           className="text-xl text-yellow-500 hover:cursor-pointer"
                           icon={faPencilSquare}
@@ -78,7 +79,7 @@ const PurchaseHistory = (props) => {
                       </Link>
                       <button
                         className="p-2"
-                        onClick={() => props.removeProduct(props.product.id)}
+                        onClick={() => props.removeProduct(2)}
                       >
                         <FontAwesomeIcon
                           className="text-xl text-red-500 hover:cursor-pointer"
