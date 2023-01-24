@@ -1,6 +1,7 @@
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { faPencilSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Stock = () => {
   const stockUrl = `http://127.0.0.1:8000/stock/`;
@@ -14,12 +15,15 @@ const Stock = () => {
 
   return (
     <>
-      <h1 className="text-start sm:text-3xl text-2xl font-medium title-font text-gray-900">
-        Product Stock
-      </h1>
-      <p className="text-sm text-start">
-        See the product details with quantity and price.
-      </p>
+
+      <div>
+        <h1 className="text-start sm:text-3xl text-2xl font-medium title-font text-gray-900">
+          Product Stock
+        </h1>
+        <p className="text-sm text-start">
+          See the product details with quantity and price.
+        </p>
+      </div>
       <div class="container px-5 py-6 mx-auto">
         {/* Product Table */}
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -67,11 +71,22 @@ const Stock = () => {
                     <td class="px-6 py-4">{stockProduct.quantity}</td>
                     <td class="px-6 py-4 text-center">3</td>
                     <td class="px-6 py-4 text-end">$10000</td>
+                    <td>
+                      <button
+                        className="p-2"
+                      // onClick={() => props.removeProduct(props.product.id)}
+                      >
+                        <FontAwesomeIcon
+                          className="text-xl text-red-500 hover:cursor-pointer"
+                          icon={faPencilSquare}
+                        />
+                      </button>
+                    </td>
                   </tr>
                 ))
               ) : (
                 <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                  <td colSpan={`8`} class="px-6 py-4 text-red-500">No product added to the stock yet.</td>
+                  <td colSpan={`8`} class="px-6 py-4 text-center text-red-500">No product added to the stock yet.</td>
                 </tr>
               )}
             </tbody>
