@@ -15,6 +15,7 @@ import PurchaseReturn from "../../Components/Purchases/PurchaseReturn";
 import SaleHistory from "../../Components/Sales/SaleHistory";
 import SalesReturn from "../../Components/Sales/SalesReturn";
 import SideMenu from "../../Components/SideMenu";
+import AddProductStock from "../../Components/Stock/AddProductStock";
 import Stock from "../../Components/Stock/Stock";
 import AddSuppliers from "../../Components/Suppliers/AddSuppliers";
 import ViewSuppliers from "../../Components/Suppliers/ViewSuppliers";
@@ -27,43 +28,45 @@ const LoggedHome = () => {
           <SideMenu />
         </div>
         <div class="ml-2 w-9/12">
-            <Routes>
-              <Route path="" element={<Dashboard />} />
-              <Route path="bill" element={<Bill />} />
-              <Route path="stock" element={<Stock />} />
-              {/* Sales */}
-              <Route path="sale-history" element={<SaleHistory />} />
-              <Route path="sales-return" element={<SalesReturn />} />
+          <Routes>
+            <Route path="" element={<Dashboard />} />
+            <Route path="bill" element={<Bill />} />
+            <Route path="view-stock" element={<Stock />} />
+            <Route path="add-stock" element={<AddProductStock />} />
 
-              {/* Purchase */}
-              <Route path="purchase-history" element={<PurchaseHistory />} />
-              <Route path="purchased-items" element={<PurchasedItems />} />
-              <Route path="add-purchase" element={<AddPurchase />} />
-              <Route path="return-purchase" element={<PurchaseReturn />} />
+            {/* Sales */}
+            <Route path="sale-history" element={<SaleHistory />} />
+            <Route path="sales-return" element={<SalesReturn />} />
 
-              {/* Products */}
-              <Route path="products" element={<ViewProducts />} />
-              <Route path="add-products" element={<AddProducts />} />
-              <Route path="products/:productId" element={<AddProducts />} />
+            {/* Purchase */}
+            <Route path="purchase-history" element={<PurchaseHistory />} />
+            <Route path="purchased-items" element={<PurchasedItems />} />
+            <Route path="add-purchase" element={<AddPurchase />} />
+            <Route path="return-purchase" element={<PurchaseReturn />} />
 
-
-              {/* Suppliers */}
-              <Route path="suppliers" element={<ViewSuppliers />} />
-              <Route path="add-suppliers" element={<AddSuppliers />} />
-              <Route path="suppliers/:supplierId" element={<AddSuppliers />} />
+            {/* Products */}
+            <Route path="products" element={<ViewProducts />} />
+            <Route path="add-products" element={<AddProducts />} />
+            <Route path="products/:productId" element={<AddProducts />} />
 
 
-              {/* Payments */}
-              <Route path="received-payments" element={<ReceivedPayments />} />
-              <Route path="payoff-payments" element={<PayoffPayments />} />
+            {/* Suppliers */}
+            <Route path="suppliers" element={<ViewSuppliers />} />
+            <Route path="add-suppliers" element={<AddSuppliers />} />
+            <Route path="suppliers/:supplierId" element={<AddSuppliers />} />
 
-              {/* Account Book */}
-              <Route path="customer-account-book" element={<CustomerAccountBook />} />
-              <Route path="supplier-account-book" element={<SupplierAccountBook />} />
 
-            </Routes>
-          </div>
-    
+            {/* Payments */}
+            <Route path="received-payments" element={<ReceivedPayments />} />
+            <Route path="payoff-payments" element={<PayoffPayments />} />
+
+            {/* Account Book */}
+            <Route path="customer-account-book" element={<CustomerAccountBook />} />
+            <Route path="supplier-account-book" element={<SupplierAccountBook />} />
+
+          </Routes>
+        </div>
+
       </div>
     </>
   );
