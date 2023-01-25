@@ -3,11 +3,28 @@ import { useState, useEffect } from "react";
 import { faPencilSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Stock = () => {
   const stockUrl = `http://127.0.0.1:8000/stock/`;
   const [stockProducts, setStockProducts] = useState([]);
 
+  const removeStockProduct = async (stockProductId) => {
+    const response = await fetch(`${stockUrl}${stockProductId}/`, {
+      method: "DELETE",
+    });
+    if (response.status === 204) {
+      setStockProducts(stockProducts.filter((p) => p.id !== stockProductId));
+      toast.success("Product removed from stock is successfull!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } else {
+      toast.error("Product removed from stock is failed!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  };
   useEffect(() => {
     fetch(stockUrl)
       .then((res) => res.json())
@@ -16,7 +33,6 @@ const Stock = () => {
 
   return (
     <>
-
       <div>
         <h1 className="text-start sm:text-3xl text-2xl font-medium title-font text-gray-900">
           Product Stock
@@ -67,7 +83,9 @@ const Stock = () => {
                     >
                       {stockProduct.product_name}
                     </th>
-                    <td class="px-6 py-4">{stockProduct.unit_purchase_price}</td>
+                    <td class="px-6 py-4">
+                      {stockProduct.unit_purchase_price}
+                    </td>
                     <td class="px-6 py-4">{stockProduct.unit_selling_price}</td>
                     <td class="px-6 py-4">{stockProduct.quantity}</td>
                     <td class="px-6 py-4 text-center">3</td>
@@ -76,25 +94,39 @@ const Stock = () => {
                       <Link
                         className="p-2"
                         to={`${stockProduct.id}`}
-                      // onClick={() => props.removeProduct(props.product.id)}
+                        // onClick={() => props.removeProduct(props.product.id)}
                       >
                         <FontAwesomeIcon
                           className="text-xl text-red-500 hover:cursor-pointer"
                           icon={faPencilSquare}
                         />
                       </Link>
+                      <button
+                        className="p-2"
+                        onClick={() => removeStockProduct(stockProduct.id)}
+                      >
+                        <FontAwesomeIcon
+                          className="text-xl text-red-500 hover:cursor-pointer"
+                          icon={faTrash}
+                        />
+                      </button>
                     </td>
                   </tr>
                 ))
               ) : (
                 <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                  <td colSpan={`8`} class="px-6 py-4 text-center text-red-500">No product added to the stock yet.</td>
+                  <td colSpan={`8`} class="px-6 py-4 text-center text-red-500">
+                    No product added to the stock yet.
+                  </td>
                 </tr>
               )}
             </tbody>
           </table>
         </div>
       </div>
+
+      {/* Toaster to show confirmation message */}
+      <ToastContainer />
     </>
   );
 };
