@@ -6,11 +6,16 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import PurchaseTable from "./PurchaseTable";
+import PurchasePaymentModal from "./PurchasePaymentModal";
+import { useParams } from "react-router-dom";
 
 const AddPurchase = () => {
-  const productUrl = ` http://127.0.0.1:8000/products/`;
+  const productUrl = `http://127.0.0.1:8000/products/`;
   const suppliersUrl = `http://127.0.0.1:8000/suppliers/`;
   const purchaseUrl = `http://127.0.0.1:8000/purchase/`;
+  const purchasedProductUrl = `http://127.0.0.1:8000/purchase/`;
+
+  const {purchasedId} = useParams();
 
   const [products, setProducts] = useState([]);
   const [toPurchaseProducts, setToPurchasProducts] = useState([]);
@@ -36,9 +41,9 @@ const AddPurchase = () => {
     setToPurchasProducts(newPurchansingProducts);
   };
   const getSupplier = (singleSupplierArray) => {
-    const supplierId = singleSupplierArray[0].value;
     const newData = { ...purchasedDetail };
-    newData["supplier"] = supplierId;
+    newData["supplier"] = singleSupplierArray[0].value;
+    newData["supplierName"] = singleSupplierArray[0].label;
     setPurchasedDetail(newData);
   };
 
@@ -82,11 +87,14 @@ const AddPurchase = () => {
     return newData;
   };
 
-  const finalizeProductPurchaing = async () => {
+  const finalizeProductPurchaing = async (paidAmount, dueAmount) => {
+    let data = getPurhasedDetail();
+    data['paid_amount'] = paidAmount;
+    data['due_amount'] = dueAmount;
     const response = await fetch(purchaseUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(getPurhasedDetail()),
+      body: JSON.stringify(data),
     });
 
     if (response.status === 201) {
@@ -107,6 +115,12 @@ const AddPurchase = () => {
     fetch(suppliersUrl)
       .then((res) => res.json())
       .then((data) => setSuppliers(data));
+    
+    if(purchasedId){
+      fetch(`${purchasedProductUrl}${purchasedId}/`)
+      .then(res=>res.json())
+      .then(data=> setToPurchasProducts(data.products))
+    }
   }, [productUrl, suppliersUrl]);
 
   return (
@@ -117,11 +131,11 @@ const AddPurchase = () => {
       <p className="text-md text-start">
         Purchase new products and entry them here to track.
       </p>
-      <div class="container px-5 py-6 mx-auto">
+      <div className="container px-5 py-6 mx-auto">
         {/* product selection */}
 
         <div className="flex ">
-          <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+          <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
             Product
           </span>
           <Select
@@ -133,11 +147,11 @@ const AddPurchase = () => {
             // values={[]}
             className="text-start w-100"
             onChange={productPurchasing}
-            // itemRenderer={customItemRenderer}
+          // itemRenderer={customItemRenderer}
           />
         </div>
-        <div class="flex my-4">
-          <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+        <div className="flex my-4">
+          <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
             Supplier
           </span>
           <Select
@@ -149,7 +163,7 @@ const AddPurchase = () => {
             // values={[]}
             className="text-start rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             onChange={getSupplier}
-            // itemRenderer={customItemRenderer}
+          // itemRenderer={customItemRenderer}
           />
         </div>
         <div>
@@ -182,8 +196,10 @@ const AddPurchase = () => {
       <div className="py-4 flex justify-center items-center">
         <button
           type="button"
-          onClick={finalizeProductPurchaing}
-          class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-amber-200 hover:bg-amber-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          data-modal-target="purchasePaymentModal"
+          data-modal-toggle="purchasePaymentModal"
+          // onClick={finalizeProductPurchaing}
+          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-amber-200 hover:bg-amber-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
         >
           <span className="mr-2">
             <FontAwesomeIcon icon={faMoneyBill} />
@@ -191,6 +207,13 @@ const AddPurchase = () => {
           Payment
         </button>
       </div>
+      {/*  */}
+      <PurchasePaymentModal
+        purchasedProducts={purchasedProducts}
+        supplier={purchasedDetail.supplierName}
+        total={total}
+        finalizeProductPurchaing={finalizeProductPurchaing}
+      ></PurchasePaymentModal>
       {/* Toaster to show confirmation message */}
       <ToastContainer />
     </>

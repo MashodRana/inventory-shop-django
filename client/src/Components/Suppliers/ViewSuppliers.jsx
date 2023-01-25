@@ -14,7 +14,6 @@ const ViewSuppliers = () => {
         if (window.confirm("Are you sure that you want to remove the Supplier?") === true) {
             const response = await fetch(url, { method: 'DELETE' });
             if (response.status === 204) {
-                console.log('I ma inside of the fetch')
                 const newSuppliers = suppliers.filter(supplier => supplier.id !== supplierId);
                 setSuppliers(newSuppliers);
 

@@ -37,6 +37,8 @@ const LoggedHome = () => {
 
               {/* Purchase */}
               <Route path="purchase-history" element={<PurchaseHistory />} />
+              <Route path="purchase-history/:purchasedId" element={<AddPurchase />} />
+
               <Route path="purchased-items" element={<PurchasedItems />} />
               <Route path="add-purchase" element={<AddPurchase />} />
               <Route path="return-purchase" element={<PurchaseReturn />} />
