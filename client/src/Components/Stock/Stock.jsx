@@ -90,6 +90,7 @@ const Stock = () => {
                     <td class="px-6 py-4">{stockProduct.quantity}</td>
                     <td class="px-6 py-4 text-center">3</td>
                     <td class="px-6 py-4 text-end">$10000</td>
+                    <td class="px-6 py-4 text-end">$10000</td>
                     <td>
                       <Link
                         className="p-2"
@@ -97,7 +98,7 @@ const Stock = () => {
                         // onClick={() => props.removeProduct(props.product.id)}
                       >
                         <FontAwesomeIcon
-                          className="text-xl text-red-500 hover:cursor-pointer"
+                          className="text-xl text-yellow-500 hover:cursor-pointer"
                           icon={faPencilSquare}
                         />
                       </Link>
