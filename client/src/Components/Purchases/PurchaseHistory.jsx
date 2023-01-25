@@ -2,10 +2,32 @@ import { useState, useEffect } from "react";
 import { faPencilSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const PurchaseHistory = (props) => {
+const PurchaseHistory = () => {
   const purchasedUrl = `http://127.0.0.1:8000/purchase/`;
+  const purchasedProductUrl = `http://127.0.0.1:8000/purchase/`;
   const [purchasedProducts, setPurchasedProudcts] = useState([]);
+
+  const removePurchase = async (purchasedId) => {
+    const response = await fetch(`${purchasedProductUrl}${purchasedId}/`, {
+      method: 'DELETE'
+    })
+
+    if (response.status === 204) {
+      setPurchasedProudcts(purchasedProducts.filter(purchasedProduct => purchasedProduct.bill_no !== purchasedId))
+      // Show message that product removed.
+      toast.success('Purchase removed!', {
+        position: toast.POSITION.TOP_RIGHT
+      });
+    }
+    else {
+      toast.error('Purchase remove failed!', {
+        position: toast.POSITION.TOP_RIGHT
+      });
+    }
+  }
 
   useEffect(() => {
     fetch(purchasedUrl)
@@ -14,6 +36,7 @@ const PurchaseHistory = (props) => {
   }, [purchasedUrl]);
   return (
     <>
+      {console.log('purchase history: ', JSON.stringify(purchasedProducts))}
       <h1 className="text-start sm:text-3xl text-2xl font-medium title-font text-gray-900">
         Purchase History
       </h1>
@@ -36,7 +59,7 @@ const PurchaseHistory = (props) => {
                 <th scope="col" class="px-6 py-6 w-4/12 text-center">
                   Remarks
                 </th>
-                <th scope="col" class="px-6 py-6 w-2/12 text-center">
+                <th scope="col" class="px-6 py-6 w-2/12 text-end">
                   Paid
                 </th>
                 <th scope="col" class="px-6 py-6 w-2/12 text-center">
@@ -58,19 +81,19 @@ const PurchaseHistory = (props) => {
                       {purchasedProduct.bill_no}
                     </th>
                     <td class="px-6 py-4">
-                      <p>Purchased Date: {purchasedProduct.created_at}</p>
-                      <p>Purchased Date: {purchasedProduct.updated_at}</p>
+                      <span>Purchased: {new Date(purchasedProduct.created_at).toDateString()}</span> <br /><br />
+                      <span>Updated: {new Date(purchasedProduct.updated_at).toDateString()}</span>
                     </td>
                     <td class="px-6 py-4">{purchasedProduct.supplier}</td>
                     <td class="px-6 py-4">{purchasedProduct.note}</td>
-                    <td class="px-6 py-4 text-center">
+                    <td class="px-6 py-4 text-end">
                       {purchasedProduct.paid_amount}
                     </td>
-                    <td class="px-6 py-4 text-center">
+                    <td class="px-6 py-4 text-end">
                       {purchasedProduct.due_amount}
                     </td>
                     <td class="px-6 py-4 text-center">
-                      <Link className="p-2" to={`${props.product.id}`}>
+                      <Link className="p-2" to={`${purchasedProduct.bill_no}`}>
                         <FontAwesomeIcon
                           className="text-xl text-yellow-500 hover:cursor-pointer"
                           icon={faPencilSquare}
@@ -78,7 +101,7 @@ const PurchaseHistory = (props) => {
                       </Link>
                       <button
                         className="p-2"
-                        onClick={() => props.removeProduct(props.product.id)}
+                        onClick={() => removePurchase(purchasedProduct.bill_no)}
                       >
                         <FontAwesomeIcon
                           className="text-xl text-red-500 hover:cursor-pointer"
@@ -99,6 +122,9 @@ const PurchaseHistory = (props) => {
           </table>
         </div>
       </div>
+
+      {/* Toaster to show confirmation message */}
+      <ToastContainer />
     </>
   );
 };

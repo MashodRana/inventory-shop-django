@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from rest_framework.views import APIView
-from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
+from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST, HTTP_204_NO_CONTENT
 from rest_framework.response import Response
 
 from purchase.models import Purchase, PurchasedProduct
@@ -28,6 +28,23 @@ class PurchaseView(APIView):
             else:
                 purchase.delete()
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+
+
+class PurchaseDetailView(APIView):
+    def get(self, request, pk, format=None):
+        purchase = get_object_or_404(Purchase, pk=pk)
+        serializer = PurchaseSerializer(purchase)
+        products = purchase.get_purchased_products()
+        serializer2 = PurchasedProductSerializer(products, many=True)
+        data = serializer.data
+        data['products'] = serializer2.data
+        return Response(data)
+
+    def delete(self, request, pk, format=None):
+        purchase = get_object_or_404(Purchase, pk=pk)
+        purchase.delete()
+        return Response(status=HTTP_204_NO_CONTENT)
+
 
 
 class PurchasedProductsView(APIView):

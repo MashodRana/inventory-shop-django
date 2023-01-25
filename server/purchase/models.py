@@ -19,7 +19,7 @@ class Purchase(TimeStamp):
 
     def get_purchased_products(self):
         """ Return the list of purchased proudcts """
-        return PurchasedProduct.objects.filter(bill_no=self)
+        return PurchasedProduct.objects.filter(bill_no=self.bill_no)
 
 
 class PurchasedProduct(TimeStamp):

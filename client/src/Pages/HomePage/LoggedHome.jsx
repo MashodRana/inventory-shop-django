@@ -36,6 +36,14 @@ const LoggedHome = () => {
             <Route path="view-stock" element={<Stock />} />
             <Route path="add-stock" element={<AddProductStock />} />
             <Route path="view-stock/:productStockId" element={<AddProductStock />} />
+            
+             {/* Purchase */}
+              <Route path="purchase-history" element={<PurchaseHistory />} />
+              <Route path="purchase-history/:purchasedId" element={<AddPurchase />} />
+
+              <Route path="purchased-items" element={<PurchasedItems />} />
+              <Route path="add-purchase" element={<AddPurchase />} />
+              <Route path="return-purchase" element={<PurchaseReturn />} />
 
             {/* Sales */}
             <Route path="sale-history" element={<SaleHistory />} />
