@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { faPencilSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 const Stock = () => {
   const stockUrl = `http://127.0.0.1:8000/stock/`;
@@ -72,15 +73,16 @@ const Stock = () => {
                     <td class="px-6 py-4 text-center">3</td>
                     <td class="px-6 py-4 text-end">$10000</td>
                     <td>
-                      <button
+                      <Link
                         className="p-2"
+                        to={`${stockProduct.id}`}
                       // onClick={() => props.removeProduct(props.product.id)}
                       >
                         <FontAwesomeIcon
                           className="text-xl text-red-500 hover:cursor-pointer"
                           icon={faPencilSquare}
                         />
-                      </button>
+                      </Link>
                     </td>
                   </tr>
                 ))

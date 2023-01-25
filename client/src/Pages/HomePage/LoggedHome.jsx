@@ -31,8 +31,11 @@ const LoggedHome = () => {
           <Routes>
             <Route path="" element={<Dashboard />} />
             <Route path="bill" element={<Bill />} />
+
+            {/* Stock */}
             <Route path="view-stock" element={<Stock />} />
             <Route path="add-stock" element={<AddProductStock />} />
+            <Route path="view-stock/:productStockId" element={<AddProductStock />} />
 
             {/* Sales */}
             <Route path="sale-history" element={<SaleHistory />} />
