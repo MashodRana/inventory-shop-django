@@ -1,8 +1,11 @@
 import { faBarcode, faMoneyBill, faSearch, faUserPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Bill = () => {
+    const [willSoldProducts, setWillSoldProducts] = useState([]);
+
     return (
         <>
             <h1 className="text-start sm:text-3xl text-2xl font-medium title-font text-gray-900">Bill</h1>
@@ -89,91 +92,30 @@ const Bill = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Apple MacBook Pro 17"
-                                </th>
-                                <td class="px-6 py-4">
-                                    $1000
-                                </td>
-                                <td class="px-6 py-4">
-                                    3
-                                </td>
-                                <td class="px-6 py-4 text-end">
-                                    $3000
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    <FontAwesomeIcon className="text-xl text-red-500 hover:cursor-pointer" icon={faXmark} />
-                                </td>
-                            </tr>
-                            <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Microsoft Surface Pro
-                                </th>
-                                <td class="px-6 py-4">
-                                    $1000
-                                </td>
-                                <td class="px-6 py-4">
-                                    3
-                                </td>
-                                <td class="px-6 py-4 text-end">
-                                    $3000
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    <FontAwesomeIcon className="text-xl text-red-500 hover:cursor-pointer" icon={faXmark} />
-                                </td>
-                            </tr>
-                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Magic Mouse 2
-                                </th>
-                                <td class="px-6 py-4">
-                                    $1000
-                                </td>
-                                <td class="px-6 py-4">
-                                    3
-                                </td>
-                                <td class="px-6 py-4 text-end">
-                                    $3000
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    <FontAwesomeIcon className="text-xl text-red-500 hover:cursor-pointer" icon={faXmark} />
-                                </td>
-                            </tr>
-                            <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Google Pixel Phone
-                                </th>
-                                <td class="px-6 py-4">
-                                    $1000
-                                </td>
-                                <td class="px-6 py-4">
-                                    3
-                                </td>
-                                <td class="px-6 py-4 text-end">
-                                    $3000
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    <FontAwesomeIcon className="text-xl text-red-500 hover:cursor-pointer" icon={faXmark} />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Apple Watch 5
-                                </th>
-                                <td class="px-6 py-4">
-                                    $1000
-                                </td>
-                                <td class="px-6 py-4">
-                                    3
-                                </td>
-                                <td class="px-6 py-4 text-end">
-                                    $3000
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    <FontAwesomeIcon className="text-xl text-red-500 hover:cursor-pointer" icon={faXmark} />
-                                </td>
-                            </tr>
+                            {
+                                willSoldProducts.length ? willSoldProducts.map(willSoldProduct => (
+                                    <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            Microsoft Surface Pro
+                                        </th>
+                                        <td class="px-6 py-4">
+                                            $1000
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            3
+                                        </td>
+                                        <td class="px-6 py-4 text-end">
+                                            $3000
+                                        </td>
+                                        <td class="px-6 py-4 text-center">
+                                            <FontAwesomeIcon className="text-xl text-red-500 hover:cursor-pointer" icon={faXmark} />
+                                        </td>
+                                    </tr>
+                                ))
+                                    : <tr><td colSpan={`5`} class="px-6 py-4 text-red-500 text-center">
+                                        No product added yet.
+                                    </td></tr>
+                            }
                         </tbody>
                         <tfoot>
                             <tr class="font-semibold text-gray-900 dark:text-white">
