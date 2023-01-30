@@ -1,11 +1,26 @@
 import { faBarcode, faMoneyBill, faSearch, faUserPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Select from 'react-select'
+
 
 const Bill = () => {
-    const [willSoldProducts, setWillSoldProducts] = useState([]);
+    const productUrl = `http://127.0.0.1:8000/products/`;
 
+    const [willSoldProducts, setWillSoldProducts] = useState([]);
+    const [products, setProducts] = useState([])
+
+    const handleProudctSelection = (evnt) => {
+        console.log(evnt.value)
+        console.log(evnt.label)
+    }
+
+    useEffect(() => {
+        fetch(productUrl)
+            .then(res => res.json())
+            .then(data => setProducts(data))
+    }, [])
     return (
         <>
             <h1 className="text-start sm:text-3xl text-2xl font-medium title-font text-gray-900">Bill</h1>
@@ -53,17 +68,21 @@ const Bill = () => {
                         </div>
                     </div>
 
+
+
                     {/* Search product */}
                     <div class="md:flex md:items-center md:justify-start mb-6">
                         <div class="flex md:w-3/6">
                             <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                                 <FontAwesomeIcon icon={faSearch} />
                             </span>
-                            <input
-                                type="text"
-                                id="website-admin"
-                                class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Search product by Name"
+                            <Select
+                                onChange={handleProudctSelection}
+                                className="border-0 rounded-tl-0 rounded-bl-0 bg-gray-50 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                options={products.map((product) => ({
+                                    value: product.id,
+                                    label: product.name,
+                                }))}
                             />
                         </div>
                     </div>
