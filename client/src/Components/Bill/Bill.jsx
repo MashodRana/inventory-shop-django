@@ -37,7 +37,7 @@ const Bill = () => {
                         <div class="md:w-2/6">
                             <Select
                                 onChange={handleProudctSelection}
-                                className="inline appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                className="border-0 rounded-tl-0 rounded-bl-0 bg-gray-50 text-gray-900  block flex-1 min-w-0 w-full text-sm dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 options={products.map((product) => ({
                                     value: product.id,
                                     label: product.name,
